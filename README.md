@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/othiym23/shimmer.svg)](https://travis-ci.org/othiym23/shimmer)
-[![Coverage Status](https://coveralls.io/repos/othiym23/shimmer/badge.svg?branch=master)](https://coveralls.io/r/othiym23/shimmer?branch=master)
+## Changes
+https://github.com/othiym23/shimmer.git differs in that it prevents duplicates monkeypatch.
 
 ## Safer monkeypatching for Node.js
 
@@ -29,7 +29,7 @@ not because it seems like fun.
 
 ### API
 
-All monkeypatched functions have an attribute, `__wrapped`, set to true on
+All monkeypatched functions have an attribute, `Symbol('__wrapped')`, set to true on
 them.
 
 #### shimmer(options)
