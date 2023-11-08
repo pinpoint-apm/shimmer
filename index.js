@@ -1,5 +1,7 @@
 'use strict'
 
+const isWrapped = Symbol('__wrapped')
+
 function isFunction (funktion) {
   return typeof funktion === 'function'
 }
@@ -44,6 +46,10 @@ function wrap (nodule, name, wrapper) {
     return
   }
 
+  if (nodule[name][isWrapped]) {
+    return
+  }
+
   var original = nodule[name]
   var wrapped = wrapper(original, name)
 
@@ -51,7 +57,7 @@ function wrap (nodule, name, wrapper) {
   defineProperty(wrapped, '__unwrap', function () {
     if (nodule[name] === wrapped) defineProperty(nodule, name, original)
   })
-  defineProperty(wrapped, '__wrapped', true)
+  defineProperty(wrapped, isWrapped, true)
 
   defineProperty(nodule, name, wrapped)
   return wrapped
